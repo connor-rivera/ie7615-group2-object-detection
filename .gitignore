@@ -1,0 +1,28 @@
+# Python clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# Mac
+.DS_Store
+
+# Data and archives
+data/
+datasets/
+*.tar
+*.zip
+
+# Images 
+*.jpg
+*.jpeg
+*.png
+*.heic
+!reports/figures/*.png
+!reports/figures/*.jpg
+
+# model weights and YOLO outputs
+*.pt
+*.pth
+runs/
+*.cache
