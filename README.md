@@ -44,3 +44,21 @@ To re-run this project and get the same results:
 **Matching results**
 - All of the steps based on randomness utilize the seed '7615' so the same inputs reproduce the same scenes
 - Each result in 'records/experiments.csv' also lists the commit and dataset version it came from
+
+## Generated dataset (scenes_v1)
+- Built by `notebooks/generate_dataset.ipynb` at commit `bff0862` with seed 7615
+- Saved in the shared Drive folder as `ie7615-m2-outputs/scenes_v1.tar`
+- 1,400 train / 300 val / 300 test scenes, each 640x640 with 2-5 objects (objects 100-224 px)
+- Layout inside the tar: `scenes_v1/images/{train,val,test}/*.jpg`, `scenes_v1/labels/{train,val,test}/*.txt`, `scenes_v1/data.yaml`
+- Each label line is `class x_center y_center width height`, scaled to 0-1. Class names are OBJ001-OBJ073 (YOLO class 0 = OBJ001)
+- Sample scenes with their labels drawn on: `reports/figures/sample_scenes.png` (the green boxes are only drawn for the figure, the dataset images are clean)
+
+**To use it in a training notebook**, unpack it to `/content/data` so the paths in `data.yaml` are correct:
+```python
+from src import config
+from src.data import unpack_cleaned
+scenes_dir = unpack_cleaned(os.path.join(config.OUTPUTS, "scenes_v1.tar"), config.LOCAL)
+data_yaml = os.path.join(scenes_dir, "data.yaml")
+```
+
+**Running notebooks:** use Colab in the browser (File → Open notebook → GitHub). The `ie7615-m2-outputs` folder must be in your My Drive; if it is only under "Shared with me", right-click it → Organize → Add shortcut → My Drive.
