@@ -55,6 +55,7 @@ To re-run this project and get the same results:
 
 **To use it in a training notebook**, unpack it to `/content/data` so the paths in `data.yaml` are correct:
 ```python
+import os
 from src import config
 from src.data import unpack_cleaned
 scenes_dir = unpack_cleaned(os.path.join(config.OUTPUTS, "scenes_v1.tar"), config.LOCAL)
